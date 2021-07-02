@@ -1,0 +1,36 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "build"
+  - "push"
+
+steps:
+  clone:
+    title: "Cloning repository"
+    type: "git-clone"
+    repo: "pasha-codefresh/codefresh-pipeline-runner"
+    revision: "${{CF_BRANCH}}"
+    git: "github"
+    stage: "clone"
+
+  build:
+    title: "Building Docker image"
+    type: "build"
+    image_name: "codefresh/argo-codefresh-pipeline-runner"
+    working_directory: "${{clone}}"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "Dockerfile"
+    registry: dockerhub
+    stage: "build"
+
+  push:
+    title: Pushing to Docker Registry
+    type: push
+    stage: push
+    candidate: '${{build}}'
+    tag: 'latest'
+    registry: dockerhub
+    when:
+      branch:
+        only:
+          - main
