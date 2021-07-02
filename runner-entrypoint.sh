@@ -24,5 +24,3 @@ then
 else
 	codefresh run $PIPELINE_NAME --branch=$BRANCH
 fi
-
-60def8cef632436315c40e02.6551dd5fbb044c776493908770786bcd
