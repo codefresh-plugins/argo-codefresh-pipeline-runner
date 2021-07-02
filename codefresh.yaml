@@ -8,7 +8,7 @@ steps:
   clone:
     title: "Cloning repository"
     type: "git-clone"
-    repo: "pasha-codefresh/codefresh-pipeline-runner"
+    repo: "codefresh-plugins/argo-codefresh-pipeline-runner"
     revision: "${{CF_BRANCH}}"
     git: "github"
     stage: "clone"
