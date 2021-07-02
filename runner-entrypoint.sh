@@ -1,8 +1,6 @@
 #!/bin/bash
 
 
-codefresh auth get-contexts
-
 echo "Create context"
 
 codefresh auth create-context context --api-key $CF_API_KEY
